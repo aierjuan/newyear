@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name = "format-detection" content = "telephone=no">
+<meta name="viewport" content="width=device-width,user-scalable=no">
+<title>2018狮吼新年狂欢趴</title>
+<meta name="keywords" content="狮吼,狮吼直播,手游直播,双投屏直播" />
+<meta name="description" content="狮吼 - 4亿手游玩家的直播平台、狮吼是游戏多旗下手游直播平台，支持双投屏直播的移动端平台，边玩边播，分享快乐！狮吼直播，随时随地录屏直播，语音弹幕独特玩法，各路主播游戏大神齐聚；电竞赛事、综艺娱乐、户外精彩，一切改变尽在 狮吼- 4亿手游玩家的直播平台。" />
+<link rel="stylesheet" href="http://resource.youxiduo.com/special/shihou/promoter/newyear/static/css/base.css" />
+<link rel="stylesheet" href="http://resource.youxiduo.com/special/shihou/promoter/newyear/static/css/style.css" />
+<script type="text/javascript" src="http://resource.youxiduo.com/special/shihou/promoter/newyear/static/js/jquery-3.1.0.min.js" ></script>
+<script src="http://resource.youxiduo.com/special/shihou/promoter/newyear/static/js/util.js"></script>
+<script>
+$(function()
+{
+    var util = new Util();
+    recordClickCount(util);
+    function recordClickCount(util)
+    {
+        var url = "http://event.m.shihou.tv/shihou_lottery/api/addLotteryOpportunities";
+        var fitId = util.getUrlParam('user_id');
+        var uid = util.getUrlParam('from_user_id');
+        var sign = util.getUrlParam('sign');
+        var param = {
+            "uid":uid,
+            "fitId":fitId,
+            "schemeId": "d4d1519cdfbd477c99f9a878a4d557d2",
+            "platform": "shihou",
+            "sign":sign
+        };
+        util.requestRemoteDataGetJson(url,param,function(lotteryResult)
+        {
+            if(util.parseResult(lotteryResult, 'errorCode') == 0){}
+        });
+    }
+	var userId = util.getUrlParam('from_user_id');
+	getUserNickName(userId);
+	function getUserNickName(userId)
+	{
+		var userInfo  = "";
+		var uiUrl     = "http://api.shihou.tv/api/user/info?user_id="+userId;
+		util.requestRemoteDataGetJson(uiUrl,null,function(uiResult)
+		{
+			if(util.parseResult(uiResult,'error') == 0)
+			{
+				$(".btnTitle span").html(uiResult.data.user.nick_name);
+			}
+		},false);			
+	}
+
+})
+</script>
+</head>
+<body style="background:url(http://resource.youxiduo.com/special/shihou/promoter/newyear/static/img/bg.jpg) repeat-y; background-size:100%;">
+
+    <div class="wrap">
+    	<img src="http://resource.youxiduo.com/special/shihou/promoter/newyear/static/img/bg1.jpg" />
+        <img src="http://resource.youxiduo.com/special/shihou/promoter/newyear/static/img/bg2.jpg" />
+        <div class="boxImg">
+        	<img src="http://resource.youxiduo.com/special/shihou/promoter/newyear/static/img/bg3.jpg" />
+            <p class="btnTitle">你的好友<span></span></p>
+            <p class="btnFont">正在参加狮吼集字赢IphoneX活动</p>
+            <a href="http://www.shihou.tv/app" class="btnDl btnTelDownload">
+            	<img src="http://resource.youxiduo.com/special/shihou/promoter/newyear/static/img/xiazai.jpg"/>
+                <span class="hand"><img src="http://resource.youxiduo.com/special/shihou/promoter/newyear/static/img/hand.png"/></span>
+            </a>
+        </div>
+        <img src="http://resource.youxiduo.com/special/shihou/promoter/newyear/static/img/bg4.jpg" />
+    </div>
+</body>
+</html>
